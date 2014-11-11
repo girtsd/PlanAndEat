@@ -1,9 +1,9 @@
 <?php
 // 1. Create a database connection
-$dbhost = <host>;
-$dbuser = <user>;
-$dbpass = <pass>;
-$dbname = <db>;
+$dbhost = $_ENV["dbhost"];
+$dbuser = $_ENV["dbuser"];
+$dbpass = $_ENV["dbpass"];
+$dbname = $_ENV["db"];
 $connection = mysqli_connect( $dbhost, $dbuser, $dbpass, $dbname);
 // Test if connection occured.
 if(mysqli_connect_error()) {
