@@ -1,16 +1,12 @@
 <?php require_once("../include/sessions.php"); ?>
 <?php require_once("../include/db_connection.php"); ?>
 <?php require_once("../include/functions.php"); ?>
-<?php
-// 2.Perform database query.
 
-    $query = "Select * from web_list";
-    $result = mysqli_query($connection, $query);
-    confirm_query($result);
-    mysqli_set_charset($connection,"utf8");
-?>
 <?php include("../include/layouts/header.php"); ?>
+<?php
 
+    mysqli_set_charset($connection,"utf8");    
+?>
 
 <div id="main">
     <div id="navigation">

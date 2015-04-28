@@ -4,9 +4,6 @@
 <?php
 // 2.Perform database query.
 
-    $query = "Select * from web_list";
-    $result = mysqli_query($connection, $query);
-    confirm_query($result);
     mysqli_set_charset($connection,"utf8");
 ?>
 <?php include("../include/layouts/header.php"); ?>
