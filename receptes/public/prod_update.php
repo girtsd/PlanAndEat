@@ -1,15 +1,13 @@
 <?php require_once("../include/sessions.php"); ?>
 <?php require_once("../include/db_connection.php"); ?>
 <?php require_once("../include/functions.php"); ?>
-<?php include("../include/layouts/header.php"); ?>
- 
- <?php
+<?php
  $prod_name=$_POST['ProductName'];
  $calories=$_POST['Calories'];
  $id=$_POST['id'];
      mysqli_set_charset($connection,"utf8");
         $query = "UPDATE Products SET ProductName='$prod_name', Calories='$calories' WHERE Product_id='$id'";
-        echo $query;
+        //echo $query;
         $result = mysqli_query($connection, $query);
         confirm_query($result);         
     if ($result) {

@@ -1,6 +1,6 @@
 set foreign_key_checks=0;
 load data local
- infile '/var/www/html/receptes/Components_UTF8.csv'
+ infile '/var/www/PandE/PlanAndEat/Tabulas/Components_UTF8.csv'
  into table Components
  fields terminated by X'09'
  ignore 1 lines

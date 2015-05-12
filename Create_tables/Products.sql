@@ -1,8 +1,8 @@
-DROP TABLE products;
+DROP TABLE Products;
 
-CREATE TABLE products
-( Product_id numeric not null primary key auto_increment,
-  ProcuctName varchar(255) not null,
+CREATE TABLE Products
+( Product_id int not null primary key auto_increment,
+  ProductName varchar(255) not null,
   Calories varchar(255)
 );
 

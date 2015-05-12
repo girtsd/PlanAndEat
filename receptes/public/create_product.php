@@ -1,7 +1,7 @@
 <?php require_once("../include/sessions.php"); ?>
 <?php require_once("../include/db_connection.php"); ?>
 <?php require_once("../include/functions.php"); ?>
-
+<?php require_once("../include/validation_functions.php"); ?>
 <?php
 
 if (isset($_POST['submit'])) {
@@ -10,7 +10,15 @@ if (isset($_POST['submit'])) {
 
     $prod_name = mysql_prep($_POST["ProductName"]);
     $prod_calories = $_POST["Calories"];
+    
+// Validations
+    $required_fields = array("ProductName", "Calories");
+    validate_presences($required_fields);
 
+    if (!empty($errors)) {
+        $_SESSION["errors"] = $errors;
+        redirect_to("new_product.php");
+    }
     
 // 2.Perform database query.
      mysqli_set_charset($connection,"utf8");
@@ -24,7 +32,7 @@ if (isset($_POST['submit'])) {
     if ($result) {
     // Success
     $_SESSION["message"] = "Subject created.";
-    redirect_to('manage_content.php');
+    redirect_to('product_list.php');
     } else {
     // Failure
     $_SESSION["message"] = "Subject creation failed";

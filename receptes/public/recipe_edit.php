@@ -45,7 +45,7 @@
 
 
         </form> 
-            <a href="manage_content.php"> Cancel</a>
+                 <a href="manage_content.php"> Cancel</a>
     </div>
 </div>
     <?php

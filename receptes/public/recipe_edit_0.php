@@ -42,7 +42,7 @@
 
 
         </form> 
-            <a href="manage_content.php"> Cancel</a>
+            <a href="recipe_show.php?id=<?php echo $rec_id;?>"> Cancel</a>
     </div>
 </div>
     <?php
