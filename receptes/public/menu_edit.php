@@ -80,7 +80,7 @@ if (isset ($_GET['id'])){
 
 
         </form> 
-            <a href="manage_content.php"> Cancel</a>
+            <a href="menu_show.php"> Cancel</a>
     </div>
 </div>
     <?php

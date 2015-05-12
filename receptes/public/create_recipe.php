@@ -1,7 +1,7 @@
 <?php require_once("../include/sessions.php"); ?>
 <?php require_once("../include/db_connection.php"); ?>
 <?php require_once("../include/functions.php"); ?>
-
+<?php require_once("../include/validation_functions.php"); ?>
 <?php
 
 if (isset($_POST['submit'])) {
@@ -11,6 +11,15 @@ if (isset($_POST['submit'])) {
     $rec_name = $_POST["RecipeName"];
     $rec_description = $_POST["Description"];
 
+// Validations
+$required_fields = array("RecipeName", "Description");
+validate_presences($required_fields);
+
+if (!empty($errors)) {
+    $_SESSION["errors"] = $errors;
+    redirect_to("new_recipe.php");
+}
+ 
     
 // 2.Perform database query.
      mysqli_set_charset($connection,"utf8");

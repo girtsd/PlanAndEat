@@ -68,11 +68,14 @@
                            echo "<td>".$row["Recipe_id"]."</td>";
                            echo "<td>".$row["RecipeName"]."</td>";
                            echo "<td>".$row["Description"]."</td>";
-                           echo "<td><a href=recipe_show.php?id=".$row['Recipe_id'].">show details</a></td>";                           echo "</tr>";
+                           echo "<td><a href=recipe_show.php?id=".$row['Recipe_id'].">show details</a></td>";                           
+                           echo "</tr>";
                 
                 };               
                 ?> 
                 </table>
+        <p></p>
+                
                 <?php 
                     $sql = "SELECT COUNT(Recipe_id) FROM Recipes"; 
                     $rs_result = mysqli_query($connection,$sql); 

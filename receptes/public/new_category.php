@@ -10,20 +10,19 @@
     </div>
     <div id="page">
     <?php echo message(); ?>
+    <?php $errors = errors();?>
+    <?php echo form_errors($errors);?>    
         <h2>Create Category</h2>
         <form action="create_category.php" method="post" >
-        <p> <label>Product name:</label>
+        <p> <label>Category name:</label>
             <input type="text" name="CategoryName" value="" />
 
         <p> <input type="submit" name="submit" value="Create Category"/></p>
      </form>
      <br />
-     <a href="manage_content.php"> Cancel</a>
+     <a href="categories_list.php"> Cancel</a>
       
     </div>
 </div>
-    <?php
- // 5. Release returned data
-    mysqli_free_result($result);
-    ?>       
- <?php include("../include/layouts/footer.php"); ?>
+      
+<?php include("../include/layouts/footer.php"); ?>

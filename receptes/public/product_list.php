@@ -49,6 +49,8 @@
         };               
         ?> 
         </table>
+        <p></p>
+        
         <?php 
             $sql = "SELECT COUNT(Product_id) FROM Products"; 
             $rs_result = mysqli_query($connection,$sql); 
@@ -59,13 +61,12 @@
             for ($i=1; $i<=$total_pages; $i++) { 
                 echo "<a href='product_list.php?page=".$i."'>".$i."</a> "; 
                 };                       
-            echo "<br><br><br>";    
-           echo "<td><a href=new_product.php>New Product</a></td></br>";
         ?>
-           
+
          </form>
-         <br />
-         <a href="manage_content.php"> Cancel</a>
+            <br><br>   
+           <a href=manage_content.php> Cancel</a>
+           <a href=new_product.php>New Product</a></br>
       
     </div>
 </div>

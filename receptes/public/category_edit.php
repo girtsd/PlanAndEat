@@ -5,7 +5,6 @@
 <?php include("../include/layouts/header.php"); ?>
 <?php 
     $cat_id=$_GET['id'];
-    echo $cat_id;
     mysqli_set_charset($connection,"utf8");
     $query = "SELECT * from Categories ";
     $query .= "WHERE Category_id ='$cat_id'";
@@ -37,7 +36,7 @@
 
 
         </form> 
-            <a href="manage_content.php"> Cancel</a>
+            <a href="categories_list.php"> Cancel</a>
     </div>
 </div>
     <?php

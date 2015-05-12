@@ -8,49 +8,22 @@
     $prod_id=$_GET['pid'];
     $prod_name=$_GET['pname'];
     mysqli_set_charset($connection,"utf8");
-    $query = "select r.Recipe_id, r.RecipeName, r.Description, 
-                    c.Unit, c.Amount, p.ProductName, p.Calories 
-            from Recipes r, Components c, Products p
-            where r.Recipe_id='$rec_id'
-            and c.Recipe_id = r.Recipe_id
-            and p.Product_id = c.Product_id";
-    $result = mysqli_query($connection, $query);
-    confirm_query($result);
-    $row = mysqli_fetch_assoc($result);
+//    $query = "select r.Recipe_id, r.RecipeName, r.Description, 
+//                    c.Unit, c.Amount, p.ProductName, p.Calories 
+//            from Recipes r, Components c, Products p
+//            where r.Recipe_id='$rec_id'
+//            and c.Recipe_id = r.Recipe_id
+//            and p.Product_id = c.Product_id";
+//    $result = mysqli_query($connection, $query);
+//    confirm_query($result);
+//    $row = mysqli_fetch_assoc($result);
 
 ?>
 
 
 <div id="main">
 
-  <fieldset>
-    <legend>Sastāvdaļas:</legend>
-    <?php
-    $query2 = "select r.Recipe_id, r.RecipeName, r.Description, r.RecipePicture,  
-                    c.Unit, c.Amount, p.Product_id, p.ProductName, p.Calories 
-            from Recipes r, Components c, Products p
-            where r.Recipe_id='$rec_id'
-            and c.Recipe_id = r.Recipe_id
-            and p.Product_id = c.Product_id";
-    $result = mysqli_query($connection, $query2);
-    confirm_query($result);
-    $row = mysqli_fetch_assoc($result);            
-            echo "<table>";
-            echo "<tr><th>Product</th><th>Amount</th><th>Unit</th></tr>";
-        
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";        
-            echo "<td>".$row["ProductName"]."</td>";
-            echo "<td>".$row["Amount"]."</td>";
-            echo "<td>".$row["Unit"]."</td>";                           
-            echo "<td><a href=product_edit.php?id=".$row['Product_id'].">update</a></td>";
-            echo "</tr>";
-            };
-            echo "</table>";
-          
-        ?>
 
-           </fieldset>
         <form name="form1" method="post" action="component_update.php" accept-charset="UTF-8">
         <fieldset>
             <legend>Edit Components:</legend>

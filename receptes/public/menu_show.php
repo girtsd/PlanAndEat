@@ -1,7 +1,6 @@
 <?php require_once("../include/sessions.php"); ?>
 <?php require_once("../include/db_connection.php"); ?>
 <?php require_once("../include/functions.php"); ?>
-
 <?php include("../include/layouts/header.php"); ?>
 
 
@@ -21,7 +20,7 @@
             from Menu m, Categories c, Recipes r
             where r.Recipe_id=m.Recipe_id
             and c.Category_id=m.Category_id
-            order by m.Date LIMIT {$start_from}, 20";
+            order by m.Date, m.category_id LIMIT {$start_from}, 20";
             $rs_result = mysqli_query($connection,$sql); 
         ?>     
         <?php
@@ -38,8 +37,8 @@
             echo "<td><a href=menu_delete.php?id=".$row['Menu_id'].">delete</a></td>";            
             echo "</tr>";
         };
-            echo "</table><br><br><br>";
-
+            echo "</table>";
+            echo "<p></p>";
             $sql1 = "select m.Menu_id, m.User_id, m.Date, m.Category_id, m.Recipe_id, c.CategoryName, r.RecipeName
             from Menu m, Categories c, Recipes r
             where r.Recipe_id=m.Recipe_id
@@ -57,12 +56,10 @@
            ?>
      
         </form> 
-
-            <a href="new_menu.php">New Menu</a>
-            <br><br>
             <a href="manage_content.php"> Cancel</a>
+            <a href="new_menu.php">New Menu</a>
             <a href="kalendarsv4.php"> Kalendars</a> 
-             <a href="recipes_list.php"> All Recipes</a>         
+            <a href="recipes_list.php"> All Recipes</a>         
      </div>
 </div>
     <?php

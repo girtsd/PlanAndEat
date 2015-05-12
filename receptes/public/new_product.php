@@ -10,6 +10,8 @@
     </div>
     <div id="page">
     <?php echo message(); ?>
+    <?php $errors = errors();?>
+    <?php echo form_errors($errors);?>
         <h2>Create Product</h2>
         <form action="create_product.php" method="post">
         <p> <label>Product name:</label>
@@ -22,12 +24,9 @@
         <input type="submit" name="submit" value="Create Product"/></p>
      </form>
      <br />
-     <a href="manage_content.php"> Cancel</a>
+     <a href="product_list.php"> Cancel</a>
       
     </div>
 </div>
-    <?php
- // 5. Release returned data
-    mysqli_free_result($result);
-    ?>       
+     
  <?php include("../include/layouts/footer.php"); ?>

@@ -10,7 +10,9 @@
     </div>
     <div id="page">
     <?php echo message(); ?>
-        <h2>Create Recipe</h2>
+    <?php $errors = errors();?>
+    <?php echo form_errors($errors);?>
+    <h2>Create Recipe</h2>
         <form action="create_recipe.php" method="post">
         <p> <label>Recipe name:</label>
             <input type="text" name="RecipeName" value="" />
@@ -22,13 +24,10 @@
         <input type="submit" name="submit" value="Create Recipe"/></p>
      </form>
      <br />
-     <a href="manage_content.php"> Cancel</a>
+     <a href="recipes_list.php"> Cancel</a>
 
       
     </div>
 </div>
-    <?php
- // 5. Release returned data
-    mysqli_free_result($result);
-    ?>       
+     
  <?php include("../include/layouts/footer.php"); ?>

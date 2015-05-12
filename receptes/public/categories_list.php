@@ -59,13 +59,15 @@
             for ($i=1; $i<=$total_pages; $i++) { 
                 echo "<a href='categories_list.php?page=".$i."'>".$i."</a> "; 
                 }; 
-            echo "<br><br><br>";    
-           echo "<td><a href=new_category.php>New Category</a></td></br>";
+
         ?>
            
          </form>
          <br />
+         <br><br><br>   
          <a href="manage_content.php"> Cancel</a>
+         <a href="new_category.php">New Category</a>
+
       
     </div>
 </div>
