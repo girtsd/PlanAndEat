@@ -1,1 +1,1 @@
-# PlanAndEat
+# PlanAndEat - recipes and meals
