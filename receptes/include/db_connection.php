@@ -8,4 +8,7 @@ if(mysqli_connect_error()) {
         " (" . mysqli_connect_errno() . ")"
     );
 }
+  /* change character set to utf8 */
+    mysqli_set_charset($connection,"utf8"); 
+   
 ?>

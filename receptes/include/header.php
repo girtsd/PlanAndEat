@@ -4,6 +4,7 @@
     
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
         <title> Admin page</title>
         <link href="stylesheets/public.css" media="all"
 rel="stylesheet" type="text/css" />

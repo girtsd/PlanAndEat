@@ -57,14 +57,13 @@
             $row = mysqli_fetch_row($rs_result); 
             $total_records = $row[0]; 
             $total_pages = ceil($total_records / 20); 
-            
             for ($i=1; $i<=$total_pages; $i++) { 
                 echo "<a href='product_list.php?page=".$i."'>".$i."</a> "; 
                 };                       
         ?>
 
          </form>
-            <br><br>   
+            <br>
            <a href=manage_content.php> Cancel</a>
            <a href=new_product.php>New Product</a></br>
       

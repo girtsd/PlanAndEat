@@ -39,7 +39,7 @@ if (isset ($_GET['id'])){
             <p> <label>MenuID:</label>
                 <input type="text" name="menu_id" value="<?php echo $row['Menu_id'];?>" />
             </p> 
-            <p> <label>Date:</label>
+            <p> <label>Date (YYYY-MM-DD):</label>
                 <input type="text" name="Date" value="<?php echo $row['Date'];?>" />
             </p>
             <p> <label>Category:</label>

@@ -5,7 +5,8 @@
 <div id="main">
     <div id="page">
         <h2>Shopping list</h2>
-        <?php    
+        <?php 
+    mysqli_set_charset($connection,"utf8");           
             if (isset($_GET["mdate"])) { $mdate  = $_GET["mdate"]; } else { $mdate="2014-06-16"; };
 //            echo $mdate;        
         ?>
@@ -19,11 +20,12 @@
 //            where r.Recipe_id=m.Recipe_id
 //            and c.Category_id=m.Category_id
 //            order by m.Date, m.category_id LIMIT {$start_from}, 20";
-            $sql = "select p.ProductName ProductName, Amount, c.Unit Unit
+            $sql = "select p.ProductName ProductName, sum(c.Amount) Amount, c.Unit Unit
             from Menu m, Components c, Products p
             where m.Date between '$mdate' and date_add('$mdate', INTERVAL 7 DAY)
             and c.Recipe_id = m.Recipe_id
             and p.Product_id = c.Product_id
+            group by ProductName, Unit
             order by ProductName asc LIMIT $start_from, 20" ;
             $rs_result = mysqli_query($connection,$sql); 
         if ($rs_result) {

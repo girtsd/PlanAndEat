@@ -77,11 +77,16 @@ input {
 
 /* table */
 
-table, td, th {
+table {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #a9a9a9;border-collapse: collapse;}
+ th {font-size:12px;background-color:#b8b8b8;border-width: 1px;padding: 3px;border-style: solid;border-color: #a9a9a9;text-align:left;}
+ tr {background-color:#cdcdcd;}
+ td {font-size:12px;border-width: 1px;padding: 3px;border-style: solid;border-color: #a9a9a9;}
+ tr:hover {background-color:#ffffff;}
+
     border: 1px solid green;
 }
 
 th {
     background-color: green;
     color: white;
-}
+} */

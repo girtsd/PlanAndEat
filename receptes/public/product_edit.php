@@ -36,10 +36,11 @@
             <p>
             <input type="submit" name="submit" value="Edit Product"/>
             </p>
-
+<br></br>
 
         </form> 
             <a href="product_list.php"> Cancel</a>
+            <a href="units_new.php"> Units_new</a>
     </div>
 </div>
     <?php

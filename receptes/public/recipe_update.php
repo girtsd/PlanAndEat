@@ -4,7 +4,7 @@
 <?php include("../include/layouts/header.php"); ?>
  
  <?php
- $rec_name=$_POST['Recipe_id'];
+ $rec_name=$_POST['RecipeName'];
  $rec_description=$_POST['Description'];
  $id=$_POST['id'];
         $query = "UPDATE Recipes SET RecipeName='$rec_name', Description='$rec_description' WHERE Recipe_id='$id'";

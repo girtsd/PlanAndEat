@@ -17,27 +17,6 @@
 
         <div id="main">
             <div id="navigation">
-              <ul class="row">
-                <?php
-                    // 3. Use returned data (if any)
-                    while($row = mysqli_fetch_assoc($result)) {
-                    //output data from eacn row
-                ?>
-                <?php
-                    echo "<li";
-                    if ($row["list_id"] == $selected_row_id) {
-                      echo " class=\"selected\"";
-                    }
-                    echo ">";
-                 ?>
-                <a href="manage_content.php?row=<?php echo $row["list_id"]; ?>">
-                <?php echo $row["list_name"] . " (" . $row["list_id"] . ")"; ?>
-                </a>
-                </li>
-                <?php
-                }
-                ?>
-                </ul>
             </div>
             <div id="page">
                 <?php echo message(); ?>

@@ -37,12 +37,9 @@
                 $result3 = mysqli_query($connection, $query3);
                 confirm_query($result3);
                 $row3 = mysqli_fetch_array($result3);
-                echo $prod_id ;
-                echo $rec_id ;  
 
                 $sql = "SELECT Product_id, ProductName FROM Products ORDER BY ProductName ASC"; 
                 $cd_result = mysqli_query($connection,$sql) or die ("Query to get data from firsttable failed: ".mysqli_error());;            
-                $cdrow=mysqli_fetch_array($cd_result);
                 
                echo "<select name='Product'>";
                 echo '<option value='.$prod_id.'>'.$prod_name."</option>";               
