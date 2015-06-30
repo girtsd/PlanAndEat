@@ -35,16 +35,17 @@
 //            echo "<img src='".$row["RecipePicture"]."' width='175' height='200' />";
 
         ?>
-        <form name="form1" method="post" action="recipe_update.php">
-            <fieldset>
+
+        <fieldset>
                 <legend>Sastāvdaļas:</legend>
                 <?php
                 $query2 = "select r.Recipe_id, r.RecipeName, r.Description, r.RecipePicture,  
-                                c.Unit, c.Amount, p.Product_id, p.ProductName, p.Calories 
-                        from Recipes r, Components c, Products p
+                                c.Unit_id, c.Amount, p.Product_id, p.ProductName, p.Calories, u.UnitName
+                        from Recipes r, Components c, Products p, Units u
                         where r.Recipe_id='$rec_id'
                         and c.Recipe_id = r.Recipe_id
-                        and p.Product_id = c.Product_id";
+                        and p.Product_id = c.Product_id
+                        and c.Unit_id = u.Unit_id";
                 $result = mysqli_query($connection, $query2);
                 confirm_query($result);
                     echo "<table>";
@@ -53,16 +54,33 @@
                         echo "<tr>";
                         echo "<td>".$row["ProductName"]."</td>";
                         echo "<td>".$row["Amount"]."</td>";
-                        echo "<td>".$row["Unit"]."</td>";                           
+                        echo "<td>".$row["UnitName"]."</td>";                           
                         echo "<td><a href=components_edit.php?pid=".$row['Product_id']."&rid=".$row['Recipe_id']."&pname=".urlencode($row["ProductName"]).">update</a></td>";
                         echo "<td><a href=component_delete.php?pid=".$row['Product_id']."&rid=".$row['Recipe_id'].">delete</a></td>";
                         echo "</tr>";
                     };
                     echo "</table><br>";
-                    echo "<td><a href=new_component.php?id=".$rec_id.">New Component</a></td></br>";
-                        
                     ?>
-
+                    
+    <form action="create_component.php" method="post">
+        <?php
+        echo '<input type="hidden" name="Recipe" value='.$recipe_id.'></p>';        
+        
+        mysqli_set_charset($connection,"utf8");
+        $sql = "SELECT Product_id, ProductName FROM Products ORDER BY ProductName ASC"; 
+            $cd_result = mysqli_query($connection,$sql) or die ("Query to get data from firsttable failed: ".mysqli_error());;            
+            $cdrow=mysqli_fetch_array($cd_result);
+            echo "<select name='Product'>";
+            echo '<option value=""> --- Please select Product --- </option>';               
+                   while ($cdrow=mysqli_fetch_array($cd_result)) {
+                echo '<option value="' .$cdrow['Product_id']. '">'. $cdrow['ProductName'] .'</option>';
+                }
+             echo "</select>";
+         ?>
+                    
+        </p>
+        <input type="submit" name="submit" value="Add Product"/></p>
+    </form>
             </fieldset>
             <fieldset>
             <legend>Pagatavošana:</legend>
@@ -92,7 +110,6 @@
                 echo "<td><a href=new_step.php?id=".$rec_id.">New Step</a></td></br>";
             ?>
             </fieldset>        
-        </form> 
             <a href="manage_content.php"> Cancel</a>
             <a href="recipes_list.php"> All Recipes</a>
             <a href="recipe_edit_0.php?rid=<?php echo $rec_id;?>"> Update Recipe</a>

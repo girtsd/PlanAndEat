@@ -39,9 +39,11 @@
 <br></br>
 
         </form> 
-            <a href="product_list.php"> Cancel</a>
-            <a href="units_new.php"> Units_new</a>
-    </div>
+        <?php
+            echo "<a href=product_list.php> Cancel </a>";
+            echo "<a href=unit_choose.php?pid=".$row['Product_id'].">  Choose units</a>";
+
+        ?>                   
 </div>
     <?php
  // 5. Release returned data

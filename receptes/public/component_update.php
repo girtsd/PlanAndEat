@@ -6,9 +6,9 @@
  $prod_id=$_POST["Product_id"]; 
  $comp_prod=$_POST["Product"];
  $comp_amount=$_POST["Amount"];
- $comp_unit=$_POST["Unit"];
+ $comp_unit=$_POST["Unit_id"];
     mysqli_set_charset($connection,"utf8");
-    $query = "UPDATE Components SET Product_id='$comp_prod', Amount='$comp_amount', Unit='$comp_unit' WHERE Recipe_id='$rec_id' and Product_id='$prod_id'";
+    $query = "UPDATE Components SET Product_id='$comp_prod', Amount='$comp_amount', Unit_id='$comp_unit' WHERE Recipe_id='$rec_id' and Product_id='$prod_id'";
 //        $query = "UPDATE Components SET Product_id=1, Amount=2, Unit=edams WHERE Recipe_id=1";
         //echo $query;
         $result = mysqli_query($connection, $query);
