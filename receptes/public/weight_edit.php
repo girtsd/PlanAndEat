@@ -40,12 +40,12 @@
                $prod_sql = "SELECT ProductName FROM Products where Product_id='$prod_id' Limit 1"; 
                $cd_result1 = mysqli_query($connection,$prod_sql) or die ("Query to get data from firsttable failed: ".mysqli_error()); 
                $prod_name = mysqli_fetch_assoc($cd_result1);
- 
+                
             ?>
             <p>  Produkts: <br>
             <h2> <?php echo $prod_name['ProductName'];?> </h2>
             </p>
-                <input type="hidden" name="Product" value="<?php echo $prod_id;?>" />
+            <input type="hidden" name="Product" value="<?php echo $prod_name['ProductName'];?>" />
             <input type="hidden" name="Product_id" value="<?php echo $prod_id;?>" />
             <?php
                 $sql = "SELECT Unit_id, UnitName FROM Units ORDER BY Unit_id ASC"; 
