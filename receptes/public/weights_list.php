@@ -33,7 +33,7 @@
                         from Products p, Units u, Weight w
                         where u.Unit_id = w.Unit_id
                         and p.Product_id = w.Product_id
-                        ORDER BY Product_id ASC LIMIT $start_from, 20";
+                        ORDER BY ProductName ASC LIMIT $start_from, 20";
                     $rs_result2 = mysqli_query($connection,$query2);
                     ?> 
                 <table>

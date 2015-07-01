@@ -5,7 +5,7 @@
 <?php
 
 // Process the form
-    $prod_id = mysql_prep($_GET["id"]);
+    $prod_id = mysql_prep($_GET["pid"]);
      mysqli_set_charset($connection,"utf8");    
 // 2.Perform database query.
 

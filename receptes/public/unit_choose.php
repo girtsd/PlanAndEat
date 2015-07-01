@@ -30,7 +30,7 @@
     <?php $errors = errors();?>
     <?php echo form_errors($errors);?>    
         <h2>Create Weight</h2>
-        <form action="create_unit.php" method="post" >
+        <form action="product_list.php" method="post" >
  
  
  <?php while ($row = mysqli_fetch_assoc($rs_result)) { 

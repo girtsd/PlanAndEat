@@ -19,11 +19,11 @@
     if ($result) {
     // Success
     $_SESSION["message"] = "Subject deleted.";
-    redirect_to("weights_list.php");
+    redirect_to("product_edit.php?pid=".$prod_id);
     } else {
     // Failure
     $_SESSION["message"] = "Subject delete failed";
-    redirect_to("weights_list.php");
+    redirect_to("product_edit.php?pid=".$prod_id);
     }
 ?>
  <?php

@@ -20,11 +20,14 @@
 //            where r.Recipe_id=m.Recipe_id
 //            and c.Category_id=m.Category_id
 //            order by m.Date, m.category_id LIMIT {$start_from}, 20";
-            $sql = "select p.ProductName ProductName, sum(c.Amount) Amount, c.Unit_id Unit
-            from Menu m, Components c, Products p
+            $sql = "select p.ProductName ProductName, sum(c.Amount) Amount, u.UnitName Unit, sum(c.Amount) * w.Weight Grams
+            from Menu m, Components c, Products p, Units u, Weight w
             where m.Date between '$mdate' and date_add('$mdate', INTERVAL 7 DAY)
             and c.Recipe_id = m.Recipe_id
             and p.Product_id = c.Product_id
+            and c.Product_id = w.Product_id
+            and c.Unit_id = u.Unit_id
+            and c.Unit_id = w.Unit_id
             group by ProductName, Unit
             order by ProductName asc" ;
 //            order by ProductName asc LIMIT $start_from, 20" ;
@@ -32,12 +35,13 @@
         if ($rs_result) {
             echo $mdate;      
             echo "<table>";
-            echo "<tr><th>ProductName</th><th>Amount</th><th>Unit ID</th></tr>";
+            echo "<tr><th>ProductName</th><th>Amount</th><th>Unit</th><th>Grams</th></tr>";
         while ($row = mysqli_fetch_assoc($rs_result)) {
             echo "<tr>";
             echo "<td>".$row["ProductName"]."</td>";            
             echo "<td>".$row["Amount"]."</td>";
-            echo "<td>".$row["Unit_id"]."</td>";
+            echo "<td>".$row["Unit"]."</td>";
+            echo "<td>".$row["Grams"]."</td>";
             echo "</tr>";
         };
             echo "</table>";

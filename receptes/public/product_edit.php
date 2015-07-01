@@ -4,7 +4,7 @@
 
 <?php include("../include/layouts/header.php"); ?>
 <?php 
-    $prod_id=$_GET['id'];
+    $prod_id=$_GET['pid'];
     mysqli_set_charset($connection,"utf8");
     $query = "SELECT * from Products ";
     $query .= "WHERE Product_id ='$prod_id'";
@@ -33,15 +33,36 @@
             <p> <label>Calories:</label>
                 <input type="text" name="Calories" value="<?php echo $row['Calories'];?>" /> 
             </p>
+            <br><br>
+          
+            
             <p>
             <input type="submit" name="submit" value="Edit Product"/>
             </p>
-<br></br>
-
+<br><br><br><br>
+<?php            
+        $sql = "SELECT w.Unit_id, u.UnitName, w.Weight FROM Units u, Weight w where Product_id='$prod_id' and w.Unit_id=u.Unit_id ORDER BY Unit_id "; 
+        $rs_result = mysqli_query($connection,$sql);
+echo "<fieldset>";
+echo "<legend>Units and Weights:</legend>";
+echo "<table>";
+            echo   "<tr><th>Unit</th><th>Weight(in grams)</th></tr>";
+            
+            while ($row = mysqli_fetch_assoc($rs_result)) {
+            echo "<tr>";
+            echo "<td>".$row["UnitName"]."</td>";
+            echo "<td>".$row["Weight"]."</td><br>";
+            echo "<td><a href=weight_edit.php?pid=".$prod_id."&uid=".$row['Unit_id']."&wght=".urlencode($row["Weight"]).">update</a></td>";
+            echo "<td><a href=weight_delete.php?pid=".$prod_id."&uid=".$row['Unit_id'].">delete</a></td>";
+            echo "</tr>";
+            };
+echo "</table>";
+echo "</fieldset>" ;           
+?>  
         </form> 
         <?php
             echo "<a href=product_list.php> Cancel </a>";
-            echo "<a href=unit_choose.php?pid=".$row['Product_id'].">  Choose units</a>";
+            echo "<a href=weight_add.php?pid=".$prod_id.">  Add unit</a>";
 
         ?>                   
 </div>
