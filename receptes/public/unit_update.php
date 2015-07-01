@@ -1,23 +1,23 @@
+<?php require_once("../include/functions.php"); ?>
 <?php require_once("../include/sessions.php"); ?>
 <?php require_once("../include/db_connection.php"); ?>
-<?php require_once("../include/functions.php"); ?>
-<?php include("../include/layouts/header.php"); ?>
- 
- <?php
- $rec_name=$_POST['RecipeName'];
- $rec_description=$_POST['Description'];
+<?php
+ $unit_name=$_POST['UnitName'];
+ $unit_desc=$_POST['Description'];
  $id=$_POST['id'];
-        $query = "UPDATE Recipes SET RecipeName='$rec_name', Description='$rec_description' WHERE Recipe_id='$id'";
+     mysqli_set_charset($connection,"utf8");
+        $query = "UPDATE Units SET UnitName='$unit_name', Description='$unit_desc' WHERE Unit_id='$id'";
+        //echo $query;
         $result = mysqli_query($connection, $query);
         confirm_query($result);         
     if ($result) {
     // Success
     $_SESSION["message"] = "Subject updated.";
-    redirect_to('recipes_list.php');
+    redirect_to('units_list.php');
     } else {
     // Failure
     $_SESSION["message"] = "Subject update failed";
-    redirect_to('recipe_edit.php');
+    redirect_to('unit_edit.php');
     }
 
 ?>

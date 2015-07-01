@@ -20,7 +20,7 @@
        date_add('$mdate', INTERVAL 6 DAY) Svetdiena 
     from DUAL
     union
-    select c.CategoryName, 
+    select menu_1.CategoryName, 
            RecipeName_1 Pirmdiena, 
            RecipeName_2 Otrdiena, 
            RecipeName_3 Tresdiena, 
@@ -28,32 +28,28 @@
            RecipeName_5 Piektdiena, 
            RecipeName_6 Sestdiena, 
            RecipeName_7 Svetdiena 
-    from Categories c
-    left join
-    (select CategoryName, RecipeName RecipeName_1 from Menu m, Recipes r, Categories c where m.Date = '$mdate' and m.Category_id=c.Category_id and
+    from (select c.CategoryName, r.RecipeName RecipeName_1 from Menu m, Recipes r, Categories c where m.Date = '$mdate' and m.Category_id=c.Category_id and
     m.Recipe_id = r.Recipe_id)menu_1
-    on
-    c.CategoryName = menu_1.CategoryName   
     left outer join
     (select CategoryName, RecipeName RecipeName_2 from Menu m, Recipes r, Categories c where Date = '$mdate'+ INTERVAL 1 DAY and c.Category_id=m.Category_id and r.Recipe_id=m.Recipe_id )menu_2
     on
-    c.CategoryName = menu_2.CategoryName
+    menu_1.CategoryName = menu_2.CategoryName
     left outer join
     (select CategoryName, RecipeName RecipeName_3 from Menu m, Recipes r, Categories c where Date = '$mdate'+ INTERVAL 2 DAY and c.Category_id=m.Category_id and r.Recipe_id=m.Recipe_id )menu_3
     on
-    c.CategoryName = menu_3.CategoryName
+    menu_1.CategoryName = menu_3.CategoryName
     left outer join
     (select CategoryName, RecipeName RecipeName_4 from Menu m, Recipes r, Categories c where Date = '$mdate'+ INTERVAL 3 DAY and c.Category_id=m.Category_id and r.Recipe_id=m.Recipe_id )menu_4
     on
-    c.CategoryName = menu_4.CategoryName
+    menu_1.CategoryName = menu_4.CategoryName
     left outer join
     (select CategoryName, RecipeName RecipeName_5 from Menu m, Recipes r, Categories c where Date = '$mdate'+ INTERVAL 4 DAY and c.Category_id=m.Category_id and r.Recipe_id=m.Recipe_id )menu_5
     on
-    c.CategoryName = menu_5.CategoryName
+    menu_1.CategoryName = menu_5.CategoryName
     left outer join
     (select CategoryName, RecipeName RecipeName_6 from Menu m, Recipes r, Categories c where Date = '$mdate'+ INTERVAL 5 DAY and c.Category_id=m.Category_id and r.Recipe_id=m.Recipe_id )menu_6
     on
-    c.CategoryName = menu_6.CategoryName
+    menu_1.CategoryName = menu_6.CategoryName
     left outer join
     (select CategoryName, RecipeName RecipeName_7 from Menu m, Recipes r, Categories c where Date = '$mdate'+ INTERVAL 6 DAY and c.Category_id=m.Category_id and r.Recipe_id=m.Recipe_id )menu_7
     on
@@ -69,7 +65,7 @@
 
     <?php
             echo "<table>";
-            echo "<tr><th>Ä’dienreize</th><th>Pirmdiena</th><th>Otrdiena</th><th>TreÅ¡diena</th><th>Ceturtdiena</th><th>Piektdiena</th><th>Sestdiena</th><th>SvÄ“tdiena</th></tr>";
+            echo "<tr><th>Çdienreize</th><th>Pirmdiena</th><th>Otrdiena</th><th>Treðdiena</th><th>Ceturtdiena</th><th>Piektdiena</th><th>Sestdiena</th><th>Svçtdiena</th></tr>";
 
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";        
@@ -84,11 +80,10 @@
            echo "</tr>";
         };
             echo "</table>"; 
-          
         ?>
      <p> </p>
          </form> 
-         <form action="kalendarsv4.php">
+         <form action="kalendars.php">
           Choose week:</br>
           <input type="date" name="mdate">
           <input type="submit"><br>

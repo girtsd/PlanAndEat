@@ -52,6 +52,8 @@ validate_presences($required_fields);
     echo $mdate;
     echo $cat_name;
     echo $rec_name;
+    echo $category_id;
+    echo $recipe_id;
     echo $query;
     
     if ($result) {

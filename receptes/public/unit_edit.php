@@ -4,10 +4,10 @@
 
 <?php include("../include/layouts/header.php"); ?>
 <?php 
-    $prod_id=$_GET['id'];
+    $unit_id=$_GET['id'];
     mysqli_set_charset($connection,"utf8");
-    $query = "SELECT * from Products ";
-    $query .= "WHERE Product_id ='$prod_id'";
+    $query = "SELECT * from Units ";
+    $query .= "WHERE Unit_id ='$unit_id'";
     $result = mysqli_query($connection, $query);
         confirm_query($result);
     $row = mysqli_fetch_assoc($result);
@@ -21,26 +21,24 @@
     </div>
     <div id="page">
         <?php echo message(); ?>
-        <h2>Edit Product</h2>
+        <h2>Edit Unit</h2>
         
-        <form name="form1" method="post" action="prod_update.php" accept-charset="UTF-8">
+        <form name="form1" method="post" action="unit_update.php" >
             <p> <label>ID:</label>
-                <input type="text" name="id" id="id" value="<?php echo $row['Product_id'];?>" />
+                <input type="text" name="id" id="id" value="<?php echo $row['Unit_id'];?>" />
             </p>        
-            <p> <label>Product name:</label>
-                <input type="text" name="ProductName" value="<?php echo $row['ProductName'];?>" />
+            <p> <label>Unit:</label>
+                <input type="text" name="UnitName" value="<?php echo $row['UnitName'];?>" />
             </p>
-            <p> <label>Calories:</label>
-                <input type="text" name="Calories" value="<?php echo $row['Calories'];?>" /> 
+            <p> <label>Description:</label>
+                <input type="text" name="Description" value="<?php echo $row['Description'];?>" /> 
             </p>
-            <p>
-            <input type="submit" name="submit" value="Edit Product"/>
+            <input type="submit" name="submit" value="Edit Unit"/>
             </p>
-<br></br>
+
 
         </form> 
-            <a href="product_list.php"> Cancel</a>
-            <a href="units_new.php"> Units_new</a>
+            <a href="units_list.php"> Cancel</a>
     </div>
 </div>
     <?php

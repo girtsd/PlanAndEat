@@ -12,8 +12,9 @@
             <a href="product_list.php">Show products</a></br>
             <a href="recipes_list.php">Show recipes</a></br>
             <a href="categories_list.php">Show categories</a></br>   
-            <a href="menu_show.php">Show menu</a> 
-          
+            <a href="menu_show.php">Show menu</a></br>
+            <a href="units_list.php">Show units</a></br>              
+            <a href="weights_list.php">Show weights</a>            
             
             </div>
             
