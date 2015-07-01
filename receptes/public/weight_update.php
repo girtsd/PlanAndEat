@@ -9,18 +9,18 @@
  $weight=$_POST["Weight"];
 
  mysqli_set_charset($connection,"utf8");
-    $query = "UPDATE Weight SET Product_id='$product', Unit_id='$unit', Weight='$weight' WHERE Product_id='$prod_id' and Unit_id='$unit_id'";
+    $query = "UPDATE Weight SET Product_id='$prod_id', Unit_id='$unit_id', Weight='$weight' WHERE Product_id='$prod_id' and Unit_id='$unit_id'";
         $result = mysqli_query($connection, $query);
         confirm_query($result); 
 
         if ($result) {
     // Success
     $_SESSION["message"] = "Subject updated.";
-    redirect_to("weights_list.php?id=".$rec_id);
+    redirect_to("product_edit.php?pid=".$prod_id);
     } else {
     // Failure
     $_SESSION["message"] = "Subject update failed";
-    redirect_to('manage_content.php');
+    redirect_to("product_edit.php?pid=".$prod_id);
     }
 
 ?>

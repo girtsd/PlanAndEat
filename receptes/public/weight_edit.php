@@ -6,7 +6,7 @@
 <?php 
     $prod_id=$_GET['pid'];
     $unit_id=$_GET['uid'];
-    $weight=$_GET['weight'];
+    $weight=$_GET['wght'];
     mysqli_set_charset($connection,"utf8");
 //    $query = "select r.Recipe_id, r.RecipeName, r.Description, 
 //                    c.Unit, c.Amount, p.ProductName, p.Calories 
@@ -28,7 +28,6 @@
         <fieldset>
             <legend>Edit Weight:</legend>
  
-            <p> <label>Produkts:</label>
             <?php
                 $query3 = "select u.Unit_id, u.UnitName, w.Weight, p.Product_id, p.ProductName
                         from Units u, Products p, Weight w
@@ -42,22 +41,12 @@
                $cd_result1 = mysqli_query($connection,$prod_sql) or die ("Query to get data from firsttable failed: ".mysqli_error()); 
                $prod_name = mysqli_fetch_assoc($cd_result1);
                 
-                $sql = "SELECT Product_id, ProductName FROM Products ORDER BY ProductName ASC"; 
-                $cd_result = mysqli_query($connection,$sql) or die ("Query to get data from firsttable failed: ".mysqli_error());
-                
-               echo "<select name='Product'>";
-                echo '<option value='.$prod_id.'>'.$prod_name['ProductName']."</option>";               
-                       while ($cdrow=mysqli_fetch_array($cd_result)) {
-                    echo '<option value="' .$cdrow['Product_id']. '">'. $cdrow['ProductName'] .'</option>';
-                    }
-                 echo "</select>";
             ?>
-
-            <p> <label>Produkta_id:</label>
-                <input type="text" name="Product_id" value="<?php echo $prod_id;?>" /></br>
+            <p>  Produkts: <br>
+            <h2> <?php echo $prod_name['ProductName'];?> </h2>
             </p>
-            </p> 
-            <p> <label>Vienība:</label>
+            <input type="hidden" name="Product" value="<?php echo $prod_name['ProductName'];?>" />
+            <input type="hidden" name="Product_id" value="<?php echo $prod_id;?>" />
             <?php
                 $sql = "SELECT Unit_id, UnitName FROM Units ORDER BY Unit_id ASC"; 
                 $cd_result = mysqli_query($connection,$sql) or die ("Query to get data from firsttable failed: ".mysqli_error());
@@ -66,28 +55,19 @@
                $cd_result2 = mysqli_query($connection,$unit_sql) or die ("Query to get data from firsttable failed: ".mysqli_error()); 
                $unit_name = mysqli_fetch_assoc($cd_result2);
                
-               echo "<select name='Unit'>";
-                echo '<option value='.$unit_id.'>'.$unit_name['UnitName']."</option>";               
-                       while ($cdrow=mysqli_fetch_array($cd_result)) {
-                    echo '<option value="' .$cdrow['Unit_id']. '">'. $cdrow['UnitName'] .'</option>';
-                    }
-                 echo "</select>";
- 
             ?>                            
-            </p>
-            <p> <label>Unit_id:</label>
-                <input type="text" name="Unit_id" value="<?php echo $unit_id;?>" /></br>
-            </p>            
-            <p> <label>Svars:</label>
-                <input type="text" name="Weight" value="<?php echo $row3['Weight'];?>" />            
+            <p> Vienība:<br><?php echo $unit_name['UnitName'];?>           
 
+                <input type="hidden" name="Unit_id" value="<?php echo $unit_id;?>" />
+            <p> Svars:<br>
+                <input type="text" name="Weight" value="<?php echo $weight;?>" /> <br>          
             </p>
             <p>
             <input type="submit" name="submit" value="Submit Component"/>
             </p>
         </fieldset>
         </form> 
-        <a href="weights_list.php">Cancel</a>
+        <a href="product_edit.php?pid=<?php echo $prod_id;?>">Cancel</a>
  
 </div>
  

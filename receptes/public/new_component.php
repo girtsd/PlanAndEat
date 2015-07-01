@@ -34,18 +34,11 @@
              echo "</select>";
          ?>
         </p>
-        <p> <label>Amount:</label>
-            <input type="text" name="Amount" value="" /> 
-        </p>
-        <p>
-        <p> <label>Unit:</label>
-            <input type="text" name="Unit" value="" /> 
-        </p>
-        <p>
+
         <input type="submit" name="submit" value="Create Component"/></p>
      </form>
      <br />
-     <a href="manage_content.php"> Cancel</a>
+     <a href="recipe_show.php?id=<?php echo $rec_id; ?>"> Cancel</a>
       
     </div>
 </div>

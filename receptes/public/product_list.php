@@ -20,7 +20,7 @@
         <?php 
             if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; }; 
             $start_from = ($page-1) * 20; 
-            $sql = "SELECT * FROM Products ORDER BY Product_id ASC LIMIT $start_from, 20"; 
+            $sql = "SELECT * FROM Products ORDER BY ProductName ASC LIMIT $start_from, 20"; 
             $rs_result = mysqli_query($connection,$sql); 
         ?> 
         <table>
@@ -42,8 +42,8 @@
                    echo "<td>".$row["ProductName"]."</td>";
                    echo "<td>".$row["Calories"]."</td>";
                    echo "<td>".$row["ProductPicture"]."</td>";                           
-                   echo "<td><a href=product_edit.php?id=".$row['Product_id'].">update</a></td>";
-                   echo "<td><a href=product_delete.php?id=".$row['Product_id'].">delete</a></td>";
+                   echo "<td><a href=product_edit.php?pid=".$row['Product_id'].">update</a></td>";
+                   echo "<td><a href=product_delete.php?pid=".$row['Product_id'].">delete</a></td>";
                    echo "</tr>";
         
         };               

@@ -13,7 +13,7 @@
     if ($result) {
     // Success
     $_SESSION["message"] = "Subject updated.";
-    redirect_to('product_drop_list.php');
+    redirect_to('product_list.php');
     } else {
     // Failure
     $_SESSION["message"] = "Subject update failed";
