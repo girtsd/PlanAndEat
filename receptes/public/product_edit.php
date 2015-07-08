@@ -41,17 +41,23 @@
             </p>
 <br><br><br><br>
 <?php            
-        $sql = "SELECT w.Unit_id, u.UnitName, w.Weight FROM Units u, Weight w where Product_id='$prod_id' and w.Unit_id=u.Unit_id ORDER BY Unit_id "; 
+        $sql = "SELECT w.Unit_id, u.UnitName, w.Weight, w.Weight*p.Calories div 100 as CaloriesProd 
+                FROM Units u, Weight w, Products p 
+                where p.Product_id='$prod_id' 
+                and p.Product_id = w.Product_id 
+                and w.Unit_id=u.Unit_id 
+                group BY u.Unit_id "; 
         $rs_result = mysqli_query($connection,$sql);
 echo "<fieldset>";
 echo "<legend>Units and Weights:</legend>";
 echo "<table>";
-            echo   "<tr><th>Unit</th><th>Weight(in grams)</th></tr>";
+            echo   "<tr><th>Unit</th><th>Weight(in grams)</th><th>Calories</th></tr>";
             
             while ($row = mysqli_fetch_assoc($rs_result)) {
             echo "<tr>";
             echo "<td>".$row["UnitName"]."</td>";
-            echo "<td>".$row["Weight"]."</td><br>";
+            echo "<td>".$row["Weight"]."</td>";
+            echo "<td>".$row["CaloriesProd"]."</td>";
             echo "<td><a href=weight_edit.php?pid=".$prod_id."&uid=".$row['Unit_id']."&wght=".urlencode($row["Weight"]).">update</a></td>";
             echo "<td><a href=weight_delete.php?pid=".$prod_id."&uid=".$row['Unit_id'].">delete</a></td>";
             echo "</tr>";
@@ -62,7 +68,7 @@ echo "</fieldset>" ;
         </form> 
         <?php
             echo "<a href=product_list.php> Cancel </a>";
-            echo "<a href=weight_add.php?pid=".$prod_id.">  Add unit</a>";
+            echo "<a href=weight_add_prod.php?pid=".$prod_id.">  Add unit</a>";
 
         ?>                   
 </div>

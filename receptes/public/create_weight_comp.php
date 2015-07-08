@@ -42,7 +42,7 @@ validate_presences($required_fields);
 } else {
 $_SESSION["message"] = "Not submitted";
 
-redirect_to("weight_add.php");
+redirect_to("weight_add_prod.php");
 }
 ?>
  <?php

@@ -86,7 +86,7 @@
         </fieldset>
         </form> 
         <a href="recipe_show.php?id=<?php echo $rec_id; ?>">Cancel</a>
-        <a href="unit_choose.php?pid=<?php echo $prod_id;?>">  Choose units</a> 
+        <a href="weight_add_comp.php?pid=<?php echo $prod_id;?>&rid=<?php echo $prod_id;?>&pname=<?php echo urlencode($prod_name) ?>">  Add unit</a> 
 </div>
  
             <?php

@@ -23,7 +23,7 @@
     <?php $errors = errors();?>
     <?php echo form_errors($errors);?>    
         <h2>Add Unit</h2>
-        <form action="create_weight_add.php" method="post" >
+        <form action="create_weight_prod.php" method="post" >
         <p> <label>Product:</label>
             <input type="hidden" name="Product_id" value="<?php echo $row["Product_id"];?> " />
             <input type="text" name="Product" value="<?php echo $row["ProductName"];?> " />       

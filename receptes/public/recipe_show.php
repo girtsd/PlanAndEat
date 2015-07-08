@@ -13,6 +13,19 @@
     confirm_query($result);
     $row = mysqli_fetch_assoc($result);
 
+    $query3 = "select sum(c.Calories) as CaloriesSum from(select c.Amount*w.Weight*p.Calories DIV 100 as Calories
+            from Recipes r, Components c, Products p, Units u, Weight w
+            where r.Recipe_id='$rec_id'
+            and c.Recipe_id = r.Recipe_id
+            and p.Product_id = c.Product_id
+            and c.Product_id = w.Product_id            
+            and c.Unit_id = u.Unit_id
+            and u.Unit_id = w.Unit_id
+            Group by p.ProductName) as c";                        
+    $result1 = mysqli_query($connection, $query3);
+    confirm_query($result1);
+    
+    $calories_row = mysqli_fetch_assoc($result1);
 ?>
 
 
@@ -27,10 +40,12 @@
             $recipe_id=$row["Recipe_id"];
             $recipe_name=$row["RecipeName"];
             $recipe_desc=$row["Description"];
+            $calories_sum=$calories_row["CaloriesSum"];
             
             echo "<td>".$row["Recipe_id"]."</td>";
             echo "<h1>".$recipe_name."</h1>";
             echo "<td>".$recipe_desc."</td></br>";
+            echo "Calories total:".$calories_sum."<br>";
             echo '<img src="data:image/jpeg;base64,' . base64_encode( $row['RecipePicture'] ) . '"  width=150 height=130  />';            
 //            echo "<img src='".$row["RecipePicture"]."' width='175' height='200' />";
 
@@ -39,25 +54,33 @@
         <fieldset>
                 <legend>Sastāvdaļas:</legend>
                 <?php
-                $query2 = "select r.Recipe_id, r.RecipeName, r.Description, r.RecipePicture,  
-                                c.Unit_id, c.Amount, p.Product_id, p.ProductName, p.Calories, u.UnitName
-                        from Recipes r, Components c, Products p, Units u
+                $query2 = "select c.Unit_id, c.Amount, p.ProductName, c.Product_id, c.Recipe_id, 
+                        c.Amount*w.Weight*p.Calories DIV 100  as CaloriesProd, u.UnitName
+                        from Recipes r, Components c, Products p, Units u, Weight w
                         where r.Recipe_id='$rec_id'
                         and c.Recipe_id = r.Recipe_id
                         and p.Product_id = c.Product_id
-                        and c.Unit_id = u.Unit_id";
+                        and c.Product_id = w.Product_id                        
+                        and c.Unit_id = u.Unit_id
+                        and u.Unit_id = w.Unit_id";
                 $result = mysqli_query($connection, $query2);
                 confirm_query($result);
-                    echo "<table>";
-                    echo "<tr><th>Product</th><th>Amount</th><th>Unit</th></tr>";
+                
+
+
+                echo "<table>";
+                    echo "<tr><th>Product</th><th>Amount</th><th>Unit</th><th>Calories</th></tr>";
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
                         echo "<td>".$row["ProductName"]."</td>";
                         echo "<td>".$row["Amount"]."</td>";
-                        echo "<td>".$row["UnitName"]."</td>";                           
+                       
+                        echo "<td>".$row["UnitName"]."</td>";
+                        echo "<td>".$row["CaloriesProd"]."</td>";
                         echo "<td><a href=components_edit.php?pid=".$row['Product_id']."&rid=".$row['Recipe_id']."&pname=".urlencode($row["ProductName"]).">update</a></td>";
                         echo "<td><a href=component_delete.php?pid=".$row['Product_id']."&rid=".$row['Recipe_id'].">delete</a></td>";
-                        echo "</tr>";
+                   echo "<td><a href=product_edit.php?pid=".$row['Product_id'].">Product edit</a></td>";
+                   echo "</tr>";
                     };
                     echo "</table><br>";
                     ?>
@@ -120,4 +143,4 @@
  // 5. Release returned data
     mysqli_free_result($result);
     ?>       
- <?php include("../include/layouts/footer.php"); ?>
+
