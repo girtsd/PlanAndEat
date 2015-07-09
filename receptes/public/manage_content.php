@@ -1,8 +1,8 @@
 <?php require_once("../include/sessions.php"); ?>
-<?php require_once("/var/www/PandE/PlanAndEat/receptes/include/db_connection.php"); ?>
-<?php require_once("/var/www/PandE/PlanAndEat/receptes/include/functions.php"); ?>
+<?php require_once("../include/db_connection.php"); ?>
+<?php require_once("../include/functions.php"); ?>
 
-<?php include("/var/www/PandE/PlanAndEat/receptes/include/layouts/header.php"); ?>
+<?php include("../include/layouts/header.php"); ?>
 
 
         <div id="main">
@@ -25,4 +25,4 @@
             </div>
         </div>
       
- <?php include("/var/www/PandE/PlanAndEat/receptes/include/layouts/footer.php"); ?>
+ <?php include("../include/layouts/footer.php"); ?>
