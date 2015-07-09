@@ -1,4 +1,4 @@
-<?php require_once("/var/www/html/receptes/include/user.php");?>
+<?php require_once("user.php");?>
 <?php
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 // Test if connection occured.
