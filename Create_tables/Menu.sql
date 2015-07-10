@@ -1,19 +1,21 @@
-DROP TABLE Menu;
+DROP TABLE IF EXISTS Menu;
 
 CREATE TABLE Menu
-( Menu_id int not null auto_increment,
-  User_id int not null,
-  Date date not null,
-  Category_id int not null,
-  Recipe_id int not null,
-  CONSTRAINT Menu_pk
+( Menu_id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  User_id MEDIUMINT UNSIGNED NOT NULL,
+  Date DATE NOT NULL,
+  Category_id SMALLINT UNSIGNED NOT NULL,
+  Recipe_id MEDIUMINT UNSIGNED NOT NULL,
+  CONSTRAINT menu_pk
     PRIMARY KEY  (Menu_id),
   CONSTRAINT fk_recipe_menu
     FOREIGN KEY (recipe_id)
-    REFERENCES Recipes(Recipe_id),
+    REFERENCES Recipes(Recipe_id)
+    ON DELETE CASCADE,
   CONSTRAINT fk_category 
     FOREIGN KEY (Category_id)
     REFERENCES Categories(Category_id)
-);
+    ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- EXIT;

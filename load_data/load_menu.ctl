@@ -1,6 +1,6 @@
 set foreign_key_checks=0;
 load data local
- infile '/var/www/PandE/PlanAndEat/Tabulas/Menu_UTF8.csv'
+ infile '/var/www/PandE/PlanAndEat/Tabulas/Menu.csv'
  into table Menu
  fields terminated by X'09'
  ignore 1 lines
