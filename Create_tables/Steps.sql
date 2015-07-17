@@ -1,7 +1,7 @@
 DROP TABLE  IF EXISTS steps;
 
 CREATE TABLE Steps
-( Recipe_id int not null,
+( Recipe_id MEDIUMINT UNSIGNED not null,
   StepNo int not null,
   Description varchar(255) not null,
   StepPic_id int not null,
