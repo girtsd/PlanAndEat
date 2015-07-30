@@ -6,17 +6,13 @@
 <?php 
     $rec_id=$_GET['rid'];
     mysqli_set_charset($connection,"utf8");
-    $query = "select r.Recipe_id, r.RecipeName, r.Description, 
-                    c.Unit, c.Amount, p.ProductName, p.Calories 
-            from Recipes r, Components c, Products p
-            where r.Recipe_id='$rec_id'
-            and c.Recipe_id = r.Recipe_id
-            and p.Product_id = c.Product_id";
+    $query = "select Recipe_id, RecipeName, Description 
+            from Recipes
+            where Recipe_id='$rec_id'";
     $result = mysqli_query($connection, $query);
     confirm_query($result);
     $row = mysqli_fetch_assoc($result);
-
-?>
+    ?>
 
 
 <div id="main">

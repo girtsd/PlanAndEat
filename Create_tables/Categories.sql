@@ -1,10 +1,11 @@
-DROP TABLE Categories;
+DROP TABLE IF EXISTS Categories;
 
 CREATE TABLE Categories
-( Category_id int not null auto_increment,
-  CategoryName varchar(40),
-  CONSTRAINT Category_pk
-    PRIMARY KEY  (Category_id)
-);
+( Category_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  CategoryName VARCHAR(40) NOT NULL,
+  CONSTRAINT category_pk
+    PRIMARY KEY  (Category_id),
+    UNIQUE KEY ix_category (CategoryName)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- EXIT;
